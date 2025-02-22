@@ -13,7 +13,7 @@ namespace RP_Keycard_remastered.Commands
     public class KeycardGet : ICommand
     {
         public string Command => "get";
-        public string[] Aliases => null;
+        public string[] Aliases => new string[] { };
         public string Description => "Gets certain information about a keycard. If no player is specified, will use sender as target.";
         // keycard get (name/permissions) (OPTIONAL: player identifier)
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -53,12 +53,12 @@ namespace RP_Keycard_remastered.Commands
                 response = $"Specified player does not have a keycard!";
                 return false;
             }
-            response = $"Keycard permissions for every keycard {target.Nickname} has:";
+            response = $"Keycard info for every keycard {target.Nickname} has:";
             foreach(Keycard card in cards)
             {
-                response += $"\n{card.Type} \n(Serial: {card.Serial})" +
+                response += $"<color=yellow>\n{card.Type} \n(Serial: {card.Serial})" +
                     $"\n(Card Name: {Plugin.serialToCards[card.Serial].Name})" +
-                    $"\nPermissions: {card.Permissions}";
+                    $"\nPermissions: {card.Permissions}</color>";
             }
             return true;
 

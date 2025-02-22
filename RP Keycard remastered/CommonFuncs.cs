@@ -82,7 +82,7 @@ namespace RP_Keycard_remastered
             string hint = config.DisplayHint;
             hint = hint.Replace("%name%", container.Name);
             hint = hint.Replace("%permissions%", PermissionsToString(keycard.Permissions));
-            player.ShowHint(hint);
+            player.ShowHint(hint, 9);
         }
     }
 }

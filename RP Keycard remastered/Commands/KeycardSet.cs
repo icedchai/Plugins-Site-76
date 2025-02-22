@@ -14,9 +14,7 @@ namespace RP_Keycard_remastered.Commands
     public class KeycardSet : ICommand
     {
         public string Command => "set";
-
-        public string[] Aliases => null;
-
+        public string[] Aliases => new string[] { };
         public string Description => "Sets certain properties on a keycard.";
         // keycard set (name/permissions) (input)
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -47,14 +45,14 @@ namespace RP_Keycard_remastered.Commands
             {
                 if (arguments.Count < 1) return false;
                 Plugin.serialToCards[keycard.Serial].Name = arguments.At(1);
-                response = $"Set keycard Name to {arguments.At(1)}";
+                response = $"<color=yellow>Set keycard {keycard.Type} Name to {arguments.At(1)}</color>";
                 return true;
             }
             if (arguments.At(0) == "permissions")
             {
                 if (arguments.Count < 1) return false;
                 keycard.Permissions = (KeycardPermissions)Enum.Parse(typeof(KeycardPermissions), arguments.At(1), true);
-                response = $"Set keycard perms to {keycard.Permissions}";
+                response = $"<color=yellow>Set keycard {keycard.Type} perms to {keycard.Permissions}</color>";
                 return true;
             }
             return false;

@@ -34,7 +34,8 @@ namespace RP_Keycard_remastered.EventHandlers
         }
         public void OnChangingItem(ChangingItemEventArgs e)
         {
-            if (!e.Item.Type.IsKeycard()) return;
+
+            if (e.Item is null || !e.Item.Type.IsKeycard()) return;
             Player player = e.Player;
             ushort serial = e.Item.Serial;
             if (Plugin.serialToCards.ContainsKey(serial))

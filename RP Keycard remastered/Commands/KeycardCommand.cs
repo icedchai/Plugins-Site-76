@@ -11,6 +11,7 @@ namespace RP_Keycard_remastered.Commands
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
     public class KeycardCommand : ParentCommand
     {
+        public KeycardCommand() => LoadGeneratedCommands();
         public override string Command => "keycard";
 
         public override string[] Aliases => new string[]{"kc", "customcard"};
@@ -20,6 +21,7 @@ namespace RP_Keycard_remastered.Commands
         public override void LoadGeneratedCommands()
         {
             RegisterCommand(new KeycardGet());
+            RegisterCommand(new KeycardSet());
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
