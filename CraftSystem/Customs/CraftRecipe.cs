@@ -1,12 +1,12 @@
-﻿using Exiled.CustomItems.API.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CraftSystem.Customs
+﻿namespace CraftSystem.Customs
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Exiled.CustomItems.API.Features;
+
     /// <summary>
     /// A class designed to contain all information related to a crafting recipe.
     /// </summary>
@@ -33,7 +33,7 @@ namespace CraftSystem.Customs
             get
             {
                 List<ItemType> items = new List<ItemType>();
-                foreach (string item in this.RecipeItems)
+                foreach (string item in RecipeItems)
                 {
                     if (Enum.TryParse<ItemType>(item, true, out ItemType type))
                     {
@@ -52,19 +52,20 @@ namespace CraftSystem.Customs
         ///
         public List<CustomItem> GetRecipeCustomItems
         {
-            get 
-            { 
+            get
+            {
                 List<CustomItem> items = new List<CustomItem>();
                 foreach (string item in RecipeItems)
                 {
-                    if(uint.TryParse(item, out uint id))
+                    if (uint.TryParse(item, out uint id))
                     {
-                        if(CustomItem.TryGet(id, out CustomItem customItem))
+                        if (CustomItem.TryGet(id, out CustomItem customItem))
                         {
                             items.Add(customItem);
                         }
                     }
                 }
+
                 return items;
             }
         }
@@ -86,6 +87,7 @@ namespace CraftSystem.Customs
                         items.Add(type);
                     }
                 }
+
                 return items;
             }
         }
@@ -110,6 +112,7 @@ namespace CraftSystem.Customs
                         }
                     }
                 }
+
                 return items;
             }
         }
