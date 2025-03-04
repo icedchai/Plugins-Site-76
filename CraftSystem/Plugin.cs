@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using CraftSystem.Customs;
     using Exiled.API.Features;
     using InventorySystem.Items.Usables;
 
@@ -15,6 +16,11 @@
         /// The singleton.
         /// </summary>
         public static Plugin Instance = null;
+
+        /// <summary>
+        /// The dictionary of registered recipes, accessible by their name.
+        /// </summary>
+        public static Dictionary<string, CraftRecipe> RegisteredRecipes = new Dictionary<string, CraftRecipe>();
 
         /// <inheritdoc/>
         public override string Name => "icedchqi's Crafting System";
@@ -34,6 +40,10 @@
             Instance = this;
             base.OnEnabled();
             RegisterEvents();
+            foreach (CraftRecipe recipe in Config.Recipes)
+            {
+                recipe.Register();
+            }
         }
 
         /// <inheritdoc/>
