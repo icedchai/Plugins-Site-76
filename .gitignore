@@ -1,29 +1,6 @@
-builds
-packages
-Omni-Utils/bin/
-Omni-SaveLoad/bin/
-Omni-Customitems/bin/
-Omni-CustomSquads/bin/
-
-Omni-Utils/obj/
-Omni-SaveLoad/obj/
-Omni-Customitems/obj/
-Omni-CustomSquads/obj/
-
+bin
+obj
 .vs
-Omni-CustomSquads/obj/Debug/Omni-CustomSquads.dll
-Omni-CustomSquads/obj/Debug/Omni-CustomSquads.pdb
-/Omni-CustomSquads/obj
-*.cache
-*.dll
-*.pdb
-*.csproj
-*.config
-*.sln
-*.csproj.user
-*.xml
-
-
-
-RP Keycard remastered/bin/
-RP Keycard remastered/obj/
+packages
+builds
+debug
