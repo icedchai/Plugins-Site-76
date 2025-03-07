@@ -14,6 +14,9 @@
     ///
     public class CraftRecipe
     {
+        private HashSet<string> recipeItems = new HashSet<string>();
+        private HashSet<string> outputItems = new HashSet<string>();
+
         /// <summary>
         /// Gets or sets the name this recipe will be referenced under.
         /// </summary>
@@ -21,12 +24,46 @@
         /// <summary>
         /// Gets or sets the list of items represented by <see cref="string"/> required for the recipe.
         /// </summary>
-        public HashSet<string> RecipeItems { get; set; } = new HashSet<string>();
+        public HashSet<string> RecipeItems
+        {
+            get
+            {
+                HashSet<string> result = new HashSet<string>();
+                foreach (string item in recipeItems)
+                {
+                    result.Add(item.ToLower());
+                }
+
+                return result;
+            }
+
+            set
+            {
+                recipeItems = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the list of items represented by <see cref="string"/> yielded by the recipe.
         /// </summary>
-        public HashSet<string> OutputItems { get; set; } = new HashSet<string>();
+        public HashSet<string> OutputItems
+        {
+            get
+            {
+                HashSet<string> result = new HashSet<string>();
+                foreach (string item in outputItems)
+                {
+                    result.Add(item.ToLower());
+                }
+
+                return result;
+            }
+
+            set
+            {
+                outputItems = value;
+            }
+        }
 
         /// <summary>
         /// Gets all <see cref="ItemType"/>s in the recipe.
