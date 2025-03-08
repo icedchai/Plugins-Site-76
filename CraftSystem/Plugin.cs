@@ -6,21 +6,23 @@
     using System.Text;
     using System.Threading.Tasks;
     using CraftSystem.Customs;
+    using CraftSystem.EventHandlers;
     using Exiled.API.Features;
     using InventorySystem.Items.Usables;
+    using PlayerHandler = Exiled.Events.Handlers.Player;
 
     /// <inheritdoc/>
     public class Plugin : Plugin<Config>
     {
         /// <summary>
+        /// Event handler.
+        /// </summary>
+        private static CraftingEventHandlers craftingEventHandlers = null;
+
+        /// <summary>
         /// The singleton.
         /// </summary>
         public static Plugin Instance = null;
-
-        /// <summary>
-        /// The dictionary of registered recipes, accessible by their name.
-        /// </summary>
-        public static Dictionary<string, CraftRecipe> RegisteredRecipes = new Dictionary<string, CraftRecipe>();
 
         /// <inheritdoc/>
         public override string Name => "icedchqi's Crafting System";
@@ -59,7 +61,8 @@
         /// </summary>
         public void RegisterEvents()
         {
-
+            craftingEventHandlers = new ();
+            PlayerHandler.DroppingItem += craftingEventHandlers.OnDroppingItem;
         }
 
         /// <summary>
@@ -67,7 +70,8 @@
         /// </summary>
         public void UnregisterEvents()
         {
-
+            PlayerHandler.DroppingItem -= craftingEventHandlers.OnDroppingItem;
+            craftingEventHandlers = null;
         }
     }
 }
