@@ -24,6 +24,22 @@
         /// <summary>
         /// The list of all recipes to register on plugin start.
         /// </summary>
-        public List<CraftRecipe> Recipes { get; set; } = new ();
+        public List<CraftRecipe> Recipes { get; set; } = new List<CraftRecipe>
+        {
+            new CraftRecipe
+            {
+                RecipeName = "testrecipe",
+                RecipeItems = new ()
+                {
+                    "keycardscientist",
+                    "1113",
+                },
+                OutputItems = new ()
+                {
+                    "keycardo5",
+                },
+
+            },
+        };
     }
 }
