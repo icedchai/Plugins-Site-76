@@ -1,6 +1,9 @@
 ﻿namespace CraftSystem
 {
+    using CraftSystem.Customs;
     using Exiled.API.Features;
+    using Exiled.API.Features.Items;
+    using Exiled.CustomItems.API.Features;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -21,6 +24,57 @@
         {
             // TODO: ADD CHECK FOR CRAFTABILITY.
             return true;
+        }
+
+        /// <summary>
+        /// Convert a HashSet of items to a HashSet of strings.
+        /// </summary>
+        /// <param name="items">The HashSet of items to convert to strings.</param>
+        /// <returns>Returns the hashset of items as strings.</returns>
+        public static HashSet<string> HashItemsToHashString(HashSet<Item> items)
+        {
+            HashSet<string> result = new HashSet<string>();
+            foreach (Item item in items)
+            {
+                if (CustomItem.TryGet(item, out CustomItem citem))
+                {
+                    result.Add(citem.Id.ToString());
+                }
+                else
+                {
+                    result.Add(item.Type.ToString().ToLower());
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Checks whether <paramref name="items"/> matches any crafting recipe currently available.
+        /// </summary>
+        /// <param name="items">The submitted hash set of items represented as strings.</param>
+        /// <returns>A crafting recipe whose RecipeItems matches <paramref name="items"/>, or null.</returns>
+        public static CraftRecipe GetCraftRecipe(HashSet<string> items)
+        {
+            foreach (CraftRecipe recipe in CraftRecipe.RegisteredRecipes)
+            {
+                if (items.SetEquals(recipe.RecipeItems))
+                {
+                    return recipe;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Checks whether <paramref name="items"/> matches any crafting recipe currently available.
+        /// </summary>
+        /// <param name="items">The submitted hash set of items.</param>
+        /// <returns>A crafting recipe whose RecipeItems matches <paramref name="items"/>, or null.</returns>
+        public static CraftRecipe GetCraftRecipe(HashSet<Item> items)
+        {
+            return GetCraftRecipe(HashItemsToHashString(items));
         }
     }
 }
