@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using CraftSystem.Customs;
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
     using Exiled.CustomItems.API.Features;
@@ -15,34 +16,6 @@
     /// </summary>
     public class CraftingEventHandlers
     {
-        /// <summary>
-        /// Contains the submitted items into a crafting table.
-        /// </summary>
-        private Dictionary<Player, HashSet<Item>> playerSubmittedItems = new Dictionary<Player, HashSet<Item>>();
-
-        /// <summary>
-        /// Convert a HashSet of items to a HashSet of strings.
-        /// </summary>
-        /// <param name="items">The HashSet of items to convert to strings.</param>
-        /// <returns>Returns the hashset of items as strings.</returns>
-        private HashSet<string> HashItemsToHashString(HashSet<Item> items)
-        {
-            HashSet<string> result = new HashSet<string>();
-            foreach (Item item in items)
-            {
-                if (CustomItem.TryGet(item, out CustomItem citem))
-                {
-                    result.Add(citem.Name.ToLower());
-                }
-                else
-                {
-                    result.Add(item.Type.ToString().ToLower());
-                }
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// Handles submitting items to the crafting bench.
         /// </summary>
@@ -55,17 +28,45 @@
                 return;
             }
 
+            HashSet<string> strings;
+
+            // TODO: add proper Craft Finalization process
+            if (e.IsThrown)
+            {
+                CraftRecipe.FinalizeCraft(player);
+                return;
+            }
+
             e.IsAllowed = false;
-            if (!playerSubmittedItems.TryGetValue(player, out HashSet<Item> items))
+            if (!CraftRecipe.PlayerSubmittedItems.TryGetValue(player, out HashSet<Item> items))
             {
                 items = new HashSet<Item> { e.Item };
-                playerSubmittedItems.Add(player, items);
+                CraftRecipe.PlayerSubmittedItems.Add(player, items);
             }
             else
             {
-                items.Add(e.Item);
-                playerSubmittedItems[player] = items;
+                if (items.Contains(e.Item))
+                {
+                    items.Remove(e.Item);
+                }
+                else
+                {
+                    items.Add(e.Item);
+                }
+
+                CraftRecipe.PlayerSubmittedItems[player] = items;
             }
+
+            // Temporary debug feature
+            // TODO: remove
+            strings = CommonFuncs.HashItemsToHashString(CraftRecipe.PlayerSubmittedItems[player]);
+            string hint = string.Empty;
+            foreach (string s in strings)
+            {
+                hint += $"\n{s}";
+            }
+
+            player.ShowHint(hint);
         }
     }
 }
