@@ -5,9 +5,11 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using AdminToys;
     using CraftSystem.Customs;
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
+    using Exiled.API.Features.Toys;
     using Exiled.CustomItems.API.Features;
     using Exiled.Events.EventArgs.Player;
 
@@ -30,6 +32,8 @@
 
             HashSet<string> strings;
 
+            e.IsAllowed = false;
+
             // TODO: add proper Craft Finalization process
             if (e.IsThrown)
             {
@@ -37,7 +41,6 @@
                 return;
             }
 
-            e.IsAllowed = false;
             if (!CraftRecipe.PlayerSubmittedItems.TryGetValue(player, out HashSet<Item> items))
             {
                 items = new HashSet<Item> { e.Item };
@@ -60,7 +63,7 @@
             // Temporary debug feature
             // TODO: remove
             strings = CommonFuncs.HashItemsToHashString(CraftRecipe.PlayerSubmittedItems[player]);
-            string hint = string.Empty;
+            string hint = "Crafting materials:";
             foreach (string s in strings)
             {
                 hint += $"\n{s}";

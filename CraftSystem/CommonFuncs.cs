@@ -4,11 +4,15 @@
     using Exiled.API.Features;
     using Exiled.API.Features.Items;
     using Exiled.CustomItems.API.Features;
+    using Exiled.Events.EventArgs.Player;
+    using InventorySystem.Items.Firearms.Attachments;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using UnityEngine;
+    using Utf8Json.Unity;
 
     /// <summary>
     /// Common functions used throughout the plugin.
@@ -22,8 +26,16 @@
         /// <returns>Whether the player is eligible to craft.</returns>
         public static bool CheckCraftEligible(Player player)
         {
-            // TODO: ADD CHECK FOR CRAFTABILITY.
-            return true;
+            foreach (CraftingTable table in Plugin.CraftingTables)
+            {
+                if (Vector3.Distance(player.Position, table.Position) < 3f)
+                {
+                    return true;
+                }
+            }
+
+            CraftRecipe.PlayerSubmittedItems.Clear();
+            return false;
         }
 
         /// <summary>

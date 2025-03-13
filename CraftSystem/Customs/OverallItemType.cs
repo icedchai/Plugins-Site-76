@@ -56,7 +56,7 @@
         }
 
         /// <summary>
-        /// Gets the underlying <see cref="ItemType"/> described by this <see cref="OverallItemType"/>, or <see cref="ItemType.None"/>.
+        /// Gets the underlying <see cref="ItemType"/> described by this <see cref="OverallItemType"/>, otherwise <see cref="ItemType.None"/>.
         /// </summary>
         public ItemType UnderlyingVanillaItemType
         {

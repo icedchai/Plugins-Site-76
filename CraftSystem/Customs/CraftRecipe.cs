@@ -31,12 +31,78 @@
         /// <summary>
         /// Gets a hash set of all <see cref="CraftRecipe"/>s currently registered.
         /// </summary>
-        public static HashSet<CraftRecipe> RegisteredRecipes
+        public static HashSet<CraftRecipe> RegisteredRecipes => registeredRecipes.Values.ToHashSet();
+
+        /// <summary>
+        /// Clears a player's submitted items.
+        /// </summary>
+        /// <param name="player">The player to clear.</param>
+        public static void ClearPlayerSubmittedItems(Player player)
         {
-            get
+            if (player is null)
             {
-                return registeredRecipes.Values.ToHashSet();
+                return;
             }
+
+            if (!PlayerSubmittedItems.TryGetValue(player, out var submittedItems))
+            {
+                return;
+            }
+
+            PlayerSubmittedItems.Remove(player);
+        }
+
+        /// <summary>
+        /// Gives a player the recipe output, and removes their crafting materials.
+        /// </summary>
+        /// <param name="player">The player to finalize the craft for.</param>
+        public static void FinalizeCraft(Player player)
+        {
+            if (player is null)
+            {
+                return;
+            }
+
+            if (!PlayerSubmittedItems.TryGetValue(player, out var submittedItems))
+            {
+                return;
+            }
+
+            HashSet<string> strings = CommonFuncs.HashItemsToHashString(submittedItems);
+            CraftRecipe recipe = CommonFuncs.GetCraftRecipe(strings);
+
+            // Null check to avoid NRE.
+            if (recipe is null)
+            {
+                return;
+            }
+
+            // Destroys all crafting materials.
+            foreach (Item item in PlayerSubmittedItems[player])
+            {
+                player.RemoveItem(item);
+            }
+
+            PlayerSubmittedItems.Clear();
+
+            if (player.Items.Count + recipe.OutputItems.Count > 8)
+            {
+                return;
+            }
+
+            // Give all custom items.
+            foreach (CustomItem citem in recipe.GetOutputCustomItems())
+            {
+                citem.Give(player);
+            }
+
+            // Give all vanilla items.
+            foreach (ItemType itemt in recipe.GetOutputItemTypes())
+            {
+                player.AddItem(itemt);
+            }
+
+            return;
         }
 
         /// <summary>
@@ -172,55 +238,7 @@
         }
 
         /// <summary>
-        /// Gives a player the recipe output, and removes their crafting materials.
-        /// </summary>
-        /// <param name="player">The player to finalize the craft for.</param>
-        public static void FinalizeCraft(Player player)
-        {
-            if (!PlayerSubmittedItems.TryGetValue(player, out var submittedItems))
-            {
-                return;
-            }
-
-            HashSet<string> strings = CommonFuncs.HashItemsToHashString(submittedItems);
-            CraftRecipe recipe = CommonFuncs.GetCraftRecipe(strings);
-
-            // Null check to avoid NRE.
-            if (recipe is null)
-            {
-                return;
-            }
-
-            // Destroys all crafting materials.
-            foreach (Item item in PlayerSubmittedItems[player])
-            {
-                player.RemoveItem(item);
-            }
-
-            PlayerSubmittedItems.Clear();
-
-            if (player.Items.Count + recipe.OutputItems.Count > 8)
-            {
-                return;
-            }
-
-            // Give all custom items.
-            foreach (CustomItem citem in recipe.GetOutputCustomItems())
-            {
-                citem.Give(player);
-            }
-
-            // Give all vanilla items.
-            foreach (ItemType itemt in recipe.GetOutputItemTypes())
-            {
-                player.AddItem(itemt);
-            }
-
-            return;
-        }
-
-        /// <summary>
-        /// Registers this recipe under <see cref="Plugin.RegisteredRecipes"/>.
+        /// Registers this recipe under <see cref="registeredRecipes"/>.
         /// </summary>
         public void Register()
         {

@@ -36,6 +36,8 @@
         /// <inheritdoc/>
         public override Version Version => new Version(1, 0, 0);
 
+        public static List<CraftingTable> CraftingTables = new List<CraftingTable>();
+
         /// <inheritdoc/>
         public override void OnEnabled()
         {
