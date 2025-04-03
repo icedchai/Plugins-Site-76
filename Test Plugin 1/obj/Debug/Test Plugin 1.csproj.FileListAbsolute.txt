@@ -65,3 +65,56 @@ B:\Projects\plugins site-76\Plugins Site-76\Test Plugin 1\obj\Debug\Test Plugin 
 B:\Projects\plugins site-76\Plugins Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.csproj.CopyComplete
 B:\Projects\plugins site-76\Plugins Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.dll
 B:\Projects\plugins site-76\Plugins Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.pdb
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Test Plugin 1.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Test Plugin 1.pdb
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Assembly-CSharp-firstpass.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Assembly-CSharp-Publicized.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Mirror.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.CoreModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\PluginAPI.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.PhysicsModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.ParticleSystemModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.AudioModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.AnimationModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.TextMeshPro.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Pooling.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.UI.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.VFXModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.RenderPipelines.Core.Runtime.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.UIModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\NorthwoodLib.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.UnityWebRequestModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.TextRenderingModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\BouncyCastle.Cryptography.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\CommandSystem.Core.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.RenderPipelines.HighDefinition.Runtime.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\YamlDotNet.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Caress.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.InputLegacyModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.IMGUIModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.SharedInternalsModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.Physics2DModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.UIElementsModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.TilemapModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.SpriteShapeModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\netstandard.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.VisualEffectGraph.Runtime.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.Burst.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.Mathematics.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.TerrainModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.VideoModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.ImageConversionModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.UIElementsNativeModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.JSONSerializeModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.GridModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.Timeline.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\Unity.Burst.Unsafe.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\bin\Debug\UnityEngine.DirectorModule.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.csproj.AssemblyReference.cache
+B:\Projects\Plugins-Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.csproj.CoreCompileInputs.cache
+B:\Projects\Plugins-Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.csproj.CopyComplete
+B:\Projects\Plugins-Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.dll
+B:\Projects\Plugins-Site-76\Test Plugin 1\obj\Debug\Test Plugin 1.pdb

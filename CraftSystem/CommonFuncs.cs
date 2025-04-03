@@ -34,7 +34,7 @@
                 }
             }
 
-            CraftRecipe.PlayerSubmittedItems.Clear();
+            CraftManager.PlayerSubmittedItems.Clear();
             return false;
         }
 
@@ -68,7 +68,7 @@
         /// <returns>A crafting recipe whose RecipeItems matches <paramref name="items"/>, or null.</returns>
         public static CraftRecipe GetCraftRecipe(HashSet<string> items)
         {
-            foreach (CraftRecipe recipe in CraftRecipe.RegisteredRecipes)
+            foreach (CraftRecipe recipe in CraftManager.RegisteredRecipes)
             {
                 if (items.SetEquals(recipe.RecipeItems))
                 {

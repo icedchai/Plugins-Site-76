@@ -37,14 +37,14 @@
             // TODO: add proper Craft Finalization process
             if (e.IsThrown)
             {
-                CraftRecipe.FinalizeCraft(player);
+                CraftManager.FinalizeCraft(player);
                 return;
             }
 
-            if (!CraftRecipe.PlayerSubmittedItems.TryGetValue(player, out HashSet<Item> items))
+            if (!CraftManager.PlayerSubmittedItems.TryGetValue(player, out HashSet<Item> items))
             {
                 items = new HashSet<Item> { e.Item };
-                CraftRecipe.PlayerSubmittedItems.Add(player, items);
+                CraftManager.PlayerSubmittedItems.Add(player, items);
             }
             else
             {
@@ -57,12 +57,12 @@
                     items.Add(e.Item);
                 }
 
-                CraftRecipe.PlayerSubmittedItems[player] = items;
+                CraftManager.PlayerSubmittedItems[player] = items;
             }
 
             // Temporary debug feature
             // TODO: remove
-            strings = CommonFuncs.HashItemsToHashString(CraftRecipe.PlayerSubmittedItems[player]);
+            strings = CommonFuncs.HashItemsToHashString(CraftManager.PlayerSubmittedItems[player]);
             string hint = "Crafting materials:";
             foreach (string s in strings)
             {

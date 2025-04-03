@@ -15,95 +15,8 @@
     ///
     public class CraftRecipe
     {
-        /// <summary>
-        /// Contains the submitted items into a crafting table, accessible by their players.
-        /// </summary>
-        public static Dictionary<Player, HashSet<Item>> PlayerSubmittedItems = new Dictionary<Player, HashSet<Item>>();
-
-        /// <summary>
-        /// The dictionary of registered recipes, accessible by their name.
-        /// </summary>
-        private static Dictionary<string, CraftRecipe> registeredRecipes = new Dictionary<string, CraftRecipe>();
-
         private HashSet<string> recipeItems = new HashSet<string>();
         private HashSet<string> outputItems = new HashSet<string>();
-
-        /// <summary>
-        /// Gets a hash set of all <see cref="CraftRecipe"/>s currently registered.
-        /// </summary>
-        public static HashSet<CraftRecipe> RegisteredRecipes => registeredRecipes.Values.ToHashSet();
-
-        /// <summary>
-        /// Clears a player's submitted items.
-        /// </summary>
-        /// <param name="player">The player to clear.</param>
-        public static void ClearPlayerSubmittedItems(Player player)
-        {
-            if (player is null)
-            {
-                return;
-            }
-
-            if (!PlayerSubmittedItems.TryGetValue(player, out var submittedItems))
-            {
-                return;
-            }
-
-            PlayerSubmittedItems.Remove(player);
-        }
-
-        /// <summary>
-        /// Gives a player the recipe output, and removes their crafting materials.
-        /// </summary>
-        /// <param name="player">The player to finalize the craft for.</param>
-        public static void FinalizeCraft(Player player)
-        {
-            if (player is null)
-            {
-                return;
-            }
-
-            if (!PlayerSubmittedItems.TryGetValue(player, out var submittedItems))
-            {
-                return;
-            }
-
-            HashSet<string> strings = CommonFuncs.HashItemsToHashString(submittedItems);
-            CraftRecipe recipe = CommonFuncs.GetCraftRecipe(strings);
-
-            // Null check to avoid NRE.
-            if (recipe is null)
-            {
-                return;
-            }
-
-            // Destroys all crafting materials.
-            foreach (Item item in PlayerSubmittedItems[player])
-            {
-                player.RemoveItem(item);
-            }
-
-            PlayerSubmittedItems.Clear();
-
-            if (player.Items.Count + recipe.OutputItems.Count > 8)
-            {
-                return;
-            }
-
-            // Give all custom items.
-            foreach (CustomItem citem in recipe.GetOutputCustomItems())
-            {
-                citem.Give(player);
-            }
-
-            // Give all vanilla items.
-            foreach (ItemType itemt in recipe.GetOutputItemTypes())
-            {
-                player.AddItem(itemt);
-            }
-
-            return;
-        }
 
         /// <summary>
         /// Gets or sets the name this recipe will be referenced under.
@@ -242,16 +155,20 @@
         /// </summary>
         public void Register()
         {
-            if (registeredRecipes.ContainsKey(RecipeName))
+            while (CraftManager.RegisteredRecipes.Where(r => r.RecipeName == this.RecipeName).Any())
             {
                 RecipeName += "0";
-                Register();
-                return;
             }
 
-            registeredRecipes.Add(RecipeName, this);
-            Log.Info($"{RecipeName} registered!");
-            return;
+            if (CraftManager.TryRegisterRecipe(this))
+            {
+                Log.Info($"{RecipeName} registered!");
+                return;
+            }
+            else
+            {
+                Log.Info($"{RecipeName} failed to register.");
+            }
         }
     }
 }
